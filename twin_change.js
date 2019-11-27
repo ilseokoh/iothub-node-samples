@@ -28,9 +28,9 @@ var provisioningHost = "global.azure-devices-provisioning.net";
 //
 // You can find your idScope in the portal overview section for your dps instance.
 //
-var idScope = "0ne0004EDF9";
+var idScope = "[DPS scope id]";
 
-var symmetricKey = "NzJhMWZkNDctYTdhZi00MTg4LTk2NjctYTRhYzIyZjY1NmY0";
+var symmetricKey = "[group enrollment symm key]";
 
 // Parse args
 var argv = require('yargs')
