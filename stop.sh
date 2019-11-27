@@ -1,0 +1,1 @@
+ps -ef | pkill -f twin_change
