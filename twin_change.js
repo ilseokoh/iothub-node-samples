@@ -28,14 +28,22 @@ var provisioningHost = "global.azure-devices-provisioning.net";
 //
 // You can find your idScope in the portal overview section for your dps instance.
 //
-var idScope = "[your scope id]";
+var idScope = "0ne0004EDF9";
 
-//
-// The registration id of the device to be registered.
-//
-var registrationId = "[Reg ID]";
+var symmetricKey = "NzJhMWZkNDctYTdhZi00MTg4LTk2NjctYTRhYzIyZjY1NmY0";
 
-var symmetricKey = "[Your symm key]";
+// Parse args
+var argv = require('yargs')
+  .usage('Usage: $0 --registrationid <DEVICE ID>')
+  .option('registrationid', {
+    alias: 'id',
+    describe: 'provisioning registration id',
+    type: 'string',
+    demandOption: true
+  })
+  .argv;
+
+  var registrationId = argv.registrationid;
 
 function computeDerivedSymmetricKey(masterKey, regId) {
     return crypto.createHmac('SHA256', Buffer.from(masterKey, 'base64'))
@@ -65,7 +73,7 @@ provisioningClient.register(function (err, result) {
             } else {
 
                 // Create device Twin
-                client.getTwin(function (err, twin) {
+                hubClient.getTwin(function (err, twin) {
                     if (err) {
                         console.error('could not get twin');
                         process.exit(-1);
@@ -81,7 +89,7 @@ provisioningClient.register(function (err, result) {
                             }
                         };
 
-                        while (1) {
+                        const intervalObj = setInterval(() => {
                             patch.correlationId = uuidv4();
                             patch.firmwareVersion += 1;
 
@@ -90,11 +98,10 @@ provisioningClient.register(function (err, result) {
                                 if (err) {
                                     console.log('twin error' + patch.firmwareVersion);
                                 } else {
-                                    console.log('twin state reported' + patch.firmwareVersion);
+                                    console.log('twin state reported' + patch.firmwareVersion + ", uuid " + patch.correlationId);
                                 }
                             });
-                        }
-
+                        }, 1000);
                     }
                 });
             }
