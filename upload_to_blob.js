@@ -8,7 +8,7 @@ var Client = require('azure-iot-device').Client;
 var fs = require('fs');
 
 //var connectionString = "HostName=csy-iothub-krc-test.azure-devices.net;DeviceId=central01;SharedAccessKey=WmPGinWRakF3YnzR96LHdAUCXbWc+EBCV2nru5vBLtU=";//process.env.DEVICE_CONNECTION_STRING;
-var connectionString = "HostName=csy-iothub-krs-test.azure-devices.net;DeviceId=south01;SharedAccessKey=thBfn82IaUng1xFsaV7o/nG8ODO2+6Q2n1zA+uh1C0w=";
+var connectionString = "HostName=KrCentralIoTHub.azure-devices.net;DeviceId=dev0011;SharedAccessKey=g+DpM8k/Eyl+ikhwFPQOQmKmczZsdZvSOPaxqI86r4c="; // "HostName=csy-iothub-krs-test.azure-devices.net;DeviceId=south01;SharedAccessKey=thBfn82IaUng1xFsaV7o/nG8ODO2+6Q2n1zA+uh1C0w=";
 if (!connectionString) {
   console.log('Please set the DEVICE_CONNECTION_STRING environment variable.');
   process.exit(-1);

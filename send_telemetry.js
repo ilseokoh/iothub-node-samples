@@ -14,7 +14,7 @@ var Message = require('azure-iot-device').Message;
 
 // String containing Hostname, Device Id & Device Key in the following formats:
 //  "HostName=<iothub_host_name>;DeviceId=<device_id>;SharedAccessKey=<device_key>"
-var connectionString = 'HostName=KrCentralIoTHub.azure-devices.net;DeviceId=node-dps-01;SharedAccessKey=9yXK/4JHHCWClJbHBRS8HvlcYlN6OuuKWq28lXtEQAk=';
+var connectionString = 'HostName=minskIoT.azure-devices.net;DeviceId=testdevice1234;SharedAccessKey=GuZQxJLVLVTkoHkqkWb0sC9SKJlnkZd5URuGEzpdork=';
 
 // fromConnectionString must specify a transport constructor, coming from any transport package.
 var client = Client.fromConnectionString(connectionString, Protocol);
