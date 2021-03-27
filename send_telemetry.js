@@ -14,7 +14,7 @@ var Message = require('azure-iot-device').Message;
 
 // String containing Hostname, Device Id & Device Key in the following formats:
 //  "HostName=<iothub_host_name>;DeviceId=<device_id>;SharedAccessKey=<device_key>"
-var connectionString = 'HostName=minskIoT.azure-devices.net;DeviceId=testdevice1234;SharedAccessKey=GuZQxJLVLVTkoHkqkWb0sC9SKJlnkZd5URuGEzpdork=';
+var connectionString = 'HostName=nodeiothubfunction123.azure-devices.net;DeviceId=dev001;SharedAccessKey=9yUOLHFjI6KqGVpEnwyiw4pAw8X7ZZahImMXuEiSVkU=';
 
 // fromConnectionString must specify a transport constructor, coming from any transport package.
 var client = Client.fromConnectionString(connectionString, Protocol);
@@ -39,7 +39,7 @@ var connectCallback = function (err) {
     var sendInterval = setInterval(function () {
       var temperature = 20 + (Math.random() * 10); // range: [20, 30]
       var humidity = 60 + (Math.random() * 20); // range: [60, 80]
-      var data = JSON.stringify({ deviceId: 'myFirstDevice', temperature: temperature, humidity: humidity });
+      var data = JSON.stringify({ deviceId: 'myFirstDevice', send_timing: temperature, humidity: humidity });
       var message = new Message(data);
       message.properties.add('temperatureAlert', (temperature > 28) ? 'true' : 'false');
       console.log('Sending message: ' + message.getData());

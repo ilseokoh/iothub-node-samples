@@ -3,8 +3,8 @@ const { exec } = require('child_process');
 
 // Parse args
 var argv = require('yargs')
-  .usage('Usage: $0 --ids <filename> --simulator <js filename>')
-  .option('ids', {
+  .usage('Usage: $0 --file <filename> --simulator <js filename>')
+  .option('file', {
     alias: 'f',
     describe: 'filename for list of ids',
     type: 'string',
@@ -22,7 +22,7 @@ var argv = require('yargs')
   var jsfilename = argv.simulator;
 
 lineReader.eachLine(filename, function(line) {
-    var cmd = "node " + jsfilename + " -d \"" + line + "\" &"
+    var cmd = "node " + simulator.filename + " -d \"" + line + "\" &"
     console.log(cmd);
 
     // run a simulator with id 
@@ -37,10 +37,11 @@ lineReader.eachLine(filename, function(line) {
         }
       });
     
-      myShellScript.stdout.on('data', (data)=>{
-        console.log(data); 
-        // do whatever you want here with data
+    myShellScript.stdout.on('data', (data)=>{
+      console.log(data); 
+      // do whatever you want here with data
     });
+    
     myShellScript.stderr.on('data', (data)=>{
         console.error(data);
     });

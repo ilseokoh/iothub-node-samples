@@ -28,9 +28,9 @@ var provisioningHost = "global.azure-devices-provisioning.net";
 //
 // You can find your idScope in the portal overview section for your dps instance.
 //
-var idScope = "[id scope]";
+var idScope = "0ne001CA0FC";
 
-var symmetricKey = "[symm key]";
+var symmetricKey = "NFmITMXCPGz3bshQy4ghyPd+aisfaqIuBhkpGYxcDDJda3HlpzfMlH3A+94YcYws+BP4rUcU/y+pukwPGve1jg==";
 
 // Parse args
 var argv = require('yargs')
@@ -50,7 +50,7 @@ function computeDerivedSymmetricKey(masterKey, regId) {
         .update(regId, 'utf8')
         .digest('base64');
 }
-var symmetricKey = computeDerivedSymmetricKey(symmetricKey, registrationId);
+//var symmetricKey = computeDerivedSymmetricKey(symmetricKey, registrationId);
 
 var provisioningSecurityClient = new SymmetricKeySecurityClient(registrationId, symmetricKey);
 
